@@ -1,5 +1,11 @@
 # 🇯🇵 Japan Trip 2026 — A Claude-Planned Itinerary
 
+[![Live Site](https://img.shields.io/github/deployments/furic/japan-trip-2026/github-pages?label=Live%20Site&logo=github&color=success)](https://furic.github.io/japan-trip-2026)
+[![Made with Claude](https://img.shields.io/badge/Made%20with-Claude%20Sonnet-8A2BE2?logo=anthropic&logoColor=white)](https://claude.ai)
+[![Japan Trip](https://img.shields.io/badge/Japan-Oct%E2%80%93Dec%202026-DC143C)](https://furic.github.io/japan-trip-2026)
+[![HTML](https://img.shields.io/badge/HTML-100%25-E34F26?logo=html5&logoColor=white)](https://github.com/furic/japan-trip-2026)
+
+
 > **An experiment in AI-assisted personal travel planning**
 > *From first search to confirmed bookings, entirely orchestrated by Claude*
 
