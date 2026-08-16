@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Trip 2026 · Richard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --ink:     #1C1917;
+    --paper:   #FAFAF7;
+    --muted:   #78716C;
+    --border:  #E7E0D8;
+    --gold:    #B5832A;
+    --teal:    #2E7D7D;
+    --snow:    #EFF6FF;
+    --red:     #C0392B;
+    --green:   #2E7D55;
+    --tag-bg:  #F5F0E8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header-left h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .header-left .kanji {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    margin-top: 4px;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .header-right strong {
+    color: var(--ink);
+    font-size: 13px;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section {
+    margin-bottom: 40px;
+  }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-bottom: 20px;
+  }
+
+  /* ── FLIGHTS ── */
+  .flights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .flight-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    background: white;
+  }
+  .flight-card .airline {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .flight-card .route {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .flight-card .route .arrow {
+    color: var(--gold);
+    font-weight: 300;
+    margin: 0 4px;
+  }
+  .flight-card .details {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .flight-card .details strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-top: 6px;
+  }
+  .tag-confirmed { background: #DCFCE7; color: #166534; }
+  .tag-lite { background: #FEF9C3; color: #854D0E; }
+  .tag-max { background: #DBEAFE; color: #1E40AF; }
+
+  /* ── HOTELS ── */
+  .hotels-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .hotel-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    background: white;
+  }
+  .hotel-card .hotel-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .hotel-card .hotel-sub {
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .hotel-card .hotel-detail {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+  .hotel-card .hotel-detail strong { color: var(--ink); font-weight: 500; }
+  .hotel-card .hotel-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 10px;
+  }
+  .hotel-card .hotel-price .currency {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .tag-paid { background: #DCFCE7; color: #166534; }
+  .tag-onsite { background: #FEE2E2; color: #991B1B; }
+  .tag-tbd { background: var(--tag-bg); color: var(--muted); }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 80px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 48px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+  .day-block {
+    position: relative;
+    margin-bottom: 6px;
+    display: flex;
+    gap: 0;
+  }
+  .day-label {
+    position: absolute;
+    left: -80px;
+    width: 72px;
+    text-align: right;
+    padding-top: 10px;
+  }
+  .day-label .date {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .day-label .weekday {
+    font-size: 10px;
+    color: #A8A29E;
+  }
+  .day-dot {
+    position: absolute;
+    left: -32px;
+    top: 14px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--paper);
+    z-index: 1;
+  }
+  .day-dot.active {
+    border-color: var(--gold);
+    background: var(--gold);
+  }
+  .day-dot.flight { border-color: var(--teal); background: var(--teal); }
+  .day-dot.ski { border-color: var(--snow); background: #3B82F6; border-color: #3B82F6; }
+
+  .day-content {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-left: 0;
+  }
+  .day-content .day-title {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+  .day-content .day-sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .day-content .day-notes {
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 6px;
+    line-height: 1.7;
+  }
+  .emoji { margin-right: 4px; }
+
+  /* Macau block */
+  .macau-block {
+    background: #FFF9F0;
+    border: 1px solid #F5E6C8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 6px;
+    position: relative;
+    margin-left: 0;
+  }
+  .macau-block .block-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: #92400E;
+    margin-bottom: 2px;
+  }
+  .macau-block .block-sub {
+    font-size: 12px;
+    color: #A16207;
+  }
+
+  /* ── REMINDERS ── */
+  .reminders-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .reminder-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: white;
+  }
+  .reminder-card .reminder-date {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .reminder-card .reminder-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reminder-card .reminder-sub {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── COSTS ── */
+  .costs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .costs-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .costs-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .costs-table tr:last-child td { border-bottom: none; }
+  .costs-table .label { font-weight: 500; }
+  .costs-table .amount { font-weight: 600; text-align: right; white-space: nowrap; }
+  .costs-table .note { font-size: 11px; color: var(--muted); }
+  .costs-table tr.total td {
+    font-weight: 700;
+    font-size: 14px;
+    border-top: 2px solid var(--ink);
+    border-bottom: none;
+    padding-top: 14px;
+  }
+  .costs-table .estimate { color: var(--muted); font-weight: 400; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media print {
+    body { padding: 24px; }
+    .flights-grid, .hotels-grid, .reminders-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <div class="header-left">
+    <h1>Japan Trip 2026</h1>
+    <div class="kanji">日本旅行 · 志賀高原 · 渋温泉</div>
+  </div>
+  <div class="header-right">
+    <strong>Richard Fu</strong><br>
+    Oct 29 – Dec 7, 2026<br>
+    40 days · 4 countries<br>
+    Solo Travel
+  </div>
+</div>
+
+<!-- ── FLIGHTS ── -->
+<div class="section">
+  <div class="section-title">✈ Confirmed Flights</div>
+  <div class="flights-grid">
+
+    <div class="flight-card">
+      <div class="airline">Qantas · QF29 · Ref: EYPCJS</div>
+      <div class="route">MEL <span class="arrow">→</span> HKG</div>
+      <div class="details">
+        <strong>Oct 29 (Thu)</strong> · 11:05 → 17:35<br>
+        T2 → T1 · Airbus A330-300<br>
+        FF: QF9527609 Bronze · Both legs AUD $1,224.42
+      </div>
+      <div><span class="tag tag-confirmed">✓ Confirmed</span></div>
+    </div>
+
+    <div class="flight-card">
+      <div class="airline">HK Express · UO622 · Ref: SFSP4R</div>
+      <div class="route">HKG <span class="arrow">→</span> HND</div>
+      <div class="details">
+        <strong>Nov 23 (Mon)</strong> · 17:55 → 22:45<br>
+        T2 → T3 · 3h 50m · Fare Class U<br>
+        Hand carry only (Cabin bag + small item)<br>
+        <em>No checked baggage — buy everything in Japan</em>
+      </div>
+      <div><span class="tag tag-confirmed">✓ Confirmed</span> <span class="tag tag-lite">Lite · Hand Carry Only</span></div>
+    </div>
+
+    <div class="flight-card">
+      <div class="airline">HK Express · UO857 · Ref: SFSP4R</div>
+      <div class="route">NRT <span class="arrow">→</span> HKG</div>
+      <div class="details">
+        <strong>Dec 6 (Sun)</strong> · 08:00 → 12:30<br>
+        T2 → T1 · 5h 30m · Fare Class O · Seat 17F<br>
+        32kg checked baggage included ✓<br>
+        Both flights total: HKD $3,036 (paid)
+      </div>
+      <div><span class="tag tag-confirmed">✓ Confirmed</span> <span class="tag tag-max">32kg Checked Bag</span></div>
+    </div>
+
+    <div class="flight-card">
+      <div class="airline">Qantas · QF30 · Ref: EYPCJS</div>
+      <div class="route">HKG <span class="arrow">→</span> MEL</div>
+      <div class="details">
+        <strong>Dec 6 (Sun)</strong> · 19:30 → 07:50+1<br>
+        T1 → T2 · Airbus A330-300<br>
+        FF: QF9527609 Bronze · Paid via PayPal
+      </div>
+      <div><span class="tag tag-confirmed">✓ Confirmed</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── HOTELS ── -->
+<div class="section">
+  <div class="section-title">🏯 Accommodation</div>
+  <div class="hotels-grid">
+
+    <div class="hotel-card">
+      <div class="hotel-name">小石屋旅館</div>
+      <div class="hotel-sub">渋温泉 · Shibu Onsen</div>
+      <div class="hotel-detail">
+        <strong>Nov 25–29</strong> · 4 nights<br>
+        朝食付 · Breakfast incl.<br>
+        男性用ドミトリー<br>
+        九湯めぐり access ✓<br>
+        じゃらん booking
+      </div>
+      <div class="hotel-price">¥28,000 <span class="currency">total</span></div>
+      <div><span class="tag tag-paid">✓ Paid Online</span></div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-name">渋温泉 湯本旅館</div>
+      <div class="hotel-sub">渋温泉 · Shibu Onsen</div>
+      <div class="hotel-detail">
+        <strong>Nov 29–Dec 1</strong> · 2 nights<br>
+        女将手作り朝食付<br>
+        和室8畳 · 創業江戸初期<br>
+        九湯めぐり access ✓<br>
+        評価 5.0★ (1,136件)
+      </div>
+      <div class="hotel-price">¥47,000 <span class="currency">total</span></div>
+      <div><span class="tag tag-onsite">Pay at Property</span></div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-name">Tokyo Hotel</div>
+      <div class="hotel-sub">秋葉原 / 上野エリア</div>
+      <div class="hotel-detail">
+        <strong>Nov 23</strong> · 1 night<br>
+        Book Sep 15 via Agoda/Booking<br>
+        Near Akihabara preferred<br>
+        Budget: ~¥10,000–15,000
+      </div>
+      <div class="hotel-price">TBD</div>
+      <div><span class="tag tag-tbd">⏰ Book Sep 15</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── MAPS ── -->
+<div class="section">
+  <div class="section-title">📍 Maps</div>
+
+  <!-- Shiga Kogen / Shibu Onsen Area -->
+  <div style="margin-bottom:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <div style="font-size:11px;font-weight:600;color:var(--teal);letter-spacing:1px;text-transform:uppercase;">⛷ 志賀高原 · 渋温泉エリア</div>
+      <a href="https://www.google.com/maps/dir/36.683472,138.4957763/36.7350796,138.4302783/36.73446,138.433203/36.732685,138.4621364/36.7416383,138.4147279/@36.715,138.455,13z" target="_blank"
+        style="font-size:11px;background:var(--teal);color:white;padding:5px 12px;border-radius:999px;text-decoration:none;font-weight:600;">
+        📍 Open All 5 Pins in Google Maps
+      </a>
+    </div>
+    <iframe
+      src="https://maps.google.com/maps?ll=36.715,138.456&z=13&t=&ie=UTF8&iwloc=&output=embed"
+      width="100%" height="360" frameborder="0"
+      style="border:1px solid var(--border);border-radius:8px;display:block;"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+      <a href="https://maps.google.com/?cid=4150992025451626422" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:5px 12px;border-radius:999px;text-decoration:none;color:var(--teal);font-weight:500;">⛷ 熊の湯スキー場 ↗</a>
+      <a href="https://maps.google.com/?cid=1390055914880155706" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:5px 12px;border-radius:999px;text-decoration:none;color:var(--teal);font-weight:500;">🏯 小石屋旅館 ↗</a>
+      <a href="https://maps.google.com/?cid=16533738723587904089" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:5px 12px;border-radius:999px;text-decoration:none;color:var(--teal);font-weight:500;">🛁 湯本旅館 ↗</a>
+      <a href="https://maps.google.com/?cid=17747995036593542687" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:5px 12px;border-radius:999px;text-decoration:none;color:var(--teal);font-weight:500;">🐒 地獄谷野猿公苑 ↗</a>
+      <a href="https://maps.google.com/?cid=14505171755232444056" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:5px 12px;border-radius:999px;text-decoration:none;color:var(--teal);font-weight:500;">🚉 湯田中駅 ↗</a>
+    </div>
+  </div>
+
+  <!-- Nagano City -->
+  <div style="margin-bottom:24px;">
+    <div style="font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">⛩ 長野市（善光寺エリア）</div>
+    <iframe
+      src="https://maps.google.com/maps?q=善光寺+長野市&z=14&t=&ie=UTF8&iwloc=&output=embed"
+      width="100%" height="260" frameborder="0"
+      style="border:1px solid var(--border);border-radius:8px;display:block;"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+      <a href="https://maps.google.com/?cid=17652590994378723118" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:5px 12px;border-radius:999px;text-decoration:none;color:var(--gold);font-weight:500;">⛩ 善光寺 ↗</a>
+      <a href="https://maps.google.com/?q=36.64470,138.18868" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:5px 12px;border-radius:999px;text-decoration:none;color:var(--gold);font-weight:500;">🚉 長野駅 ↗</a>
+    </div>
+  </div>
+
+  <!-- Tokyo -->
+  <div>
+    <div style="font-size:11px;font-weight:600;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">🗼 東京（秋葉原エリア）</div>
+    <iframe
+      src="https://maps.google.com/maps?q=秋葉原+東京&z=14&t=&ie=UTF8&iwloc=&output=embed"
+      width="100%" height="260" frameborder="0"
+      style="border:1px solid var(--border);border-radius:8px;display:block;"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+      <a href="https://maps.google.com/?q=35.70236,139.77453" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:4px 10px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500;">🎮 秋葉原</a>
+      <a href="https://maps.google.com/?q=35.68123,139.76712" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:4px 10px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500;">🚉 東京駅</a>
+      <a href="https://maps.google.com/?q=35.76454,140.38603" target="_blank" style="font-size:11px;background:var(--tag-bg);padding:4px 10px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500;">✈️ 成田空港 NRT</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── ITINERARY ── -->
+<div class="section">
+  <div class="section-title">📅 Day-by-Day Itinerary</div>
+  <div class="timeline">
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Oct 29</div><div class="weekday">Thu</div></div>
+      <div class="day-dot flight"></div>
+      <div class="day-content">
+        <div class="day-title">✈️ Melbourne → Hong Kong</div>
+        <div class="day-sub">QF29 · 11:05 dep · 17:35 arr</div>
+      </div>
+    </div>
+
+    <div class="macau-block">
+      <div class="block-title">🏠 Macau · Home Stay</div>
+      <div class="block-sub">Oct 29 – Nov 15 · ~2.5 weeks · Family time at home</div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Nov 15</div><div class="weekday">Sun</div></div>
+      <div class="day-dot flight"></div>
+      <div class="day-content">
+        <div class="day-title">🚢 Macau → Hong Kong</div>
+        <div class="day-sub">Ferry · ~1 hour</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Nov 23</div><div class="weekday">Mon</div></div>
+      <div class="day-dot flight"></div>
+      <div class="day-content">
+        <div class="day-title">✈️ Hong Kong → Tokyo HND</div>
+        <div class="day-sub">UO622 · 17:55 dep · 22:45 arr · Check in Tokyo hotel</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Nov 24</div><div class="weekday">Tue</div></div>
+      <div class="day-dot active"></div>
+      <div class="day-content">
+        <div class="day-title">🎮 Tokyo · Akihabara</div>
+        <div class="day-sub">Full day in Akihabara</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Nov 25</div><div class="weekday">Wed</div></div>
+      <div class="day-dot active"></div>
+      <div class="day-content">
+        <div class="day-title">🚅 Tokyo → Shiga Kogen · Check In</div>
+        <div class="day-sub">Shinkansen → Nagano → Bus · 小石屋旅館 (14:00)</div>
+        <div class="day-notes">Route: Tokyo → Nagano (1.5h shinkansen) → Shibu Onsen (bus ~1h)</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Nov 26</div><div class="weekday">Thu</div></div>
+      <div class="day-dot ski"></div>
+      <div class="day-content">
+        <div class="day-title">⛷️ Ski Day 1 · 熊の湯スキー場</div>
+        <div class="day-sub">Free ski shuttle from Shibu Onsen · ~20 min</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Nov 27</div><div class="weekday">Fri</div></div>
+      <div class="day-dot ski"></div>
+      <div class="day-content">
+        <div class="day-title">⛷️ Ski Day 2 · 熊の湯スキー場</div>
+        <div class="day-sub">Full day skiing</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Nov 28</div><div class="weekday">Sat</div></div>
+      <div class="day-dot ski"></div>
+      <div class="day-content">
+        <div class="day-title">⛷️ Ski Day 3 + 🐒 Snow Monkey Park</div>
+        <div class="day-sub">Morning ski · Afternoon: 地獄谷野猿公苑</div>
+        <div class="day-notes">野猿公苑: car 5 min + walk 30 min · ¥800 entrance</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Nov 29</div><div class="weekday">Sun</div></div>
+      <div class="day-dot ski"></div>
+      <div class="day-content">
+        <div class="day-title">⛷️ Ski Day 4 · Check Out → Check In 湯本旅館</div>
+        <div class="day-sub">小石屋旅館 check out · 湯本旅館 check in (14:00) · Walk within Shibu Onsen</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Nov 30</div><div class="weekday">Mon</div></div>
+      <div class="day-dot ski"></div>
+      <div class="day-content">
+        <div class="day-title">⛷️ Ski Day 5 · 5-Day Pass Complete</div>
+        <div class="day-sub">Final ski day · 5-day lift pass fully used</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Dec 1</div><div class="weekday">Tue</div></div>
+      <div class="day-dot active"></div>
+      <div class="day-content">
+        <div class="day-title">♨️ Rest Day · 九湯めぐり</div>
+        <div class="day-sub">Rest · All 9 external baths tour in yukata &amp; wooden sandals</div>
+        <div class="day-notes">Check out by 10:00 · Luggage storage at hotel</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Dec 2</div><div class="weekday">Wed</div></div>
+      <div class="day-dot active"></div>
+      <div class="day-content">
+        <div class="day-title">⛩️ Down to Nagano City · 善光寺</div>
+        <div class="day-sub">Bus → Nagano · Zenkoji Temple · Old town · Night in Nagano</div>
+        <div class="day-notes">善光寺: 1,400-year history · Underground 戒壇巡禮 experience</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Dec 3</div><div class="weekday">Thu</div></div>
+      <div class="day-dot active"></div>
+      <div class="day-content">
+        <div class="day-title">🚅 Nagano → Tokyo</div>
+        <div class="day-sub">Shinkansen · 1.5h · Afternoon in Tokyo</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Dec 4</div><div class="weekday">Fri</div></div>
+      <div class="day-dot active"></div>
+      <div class="day-content">
+        <div class="day-title">🛍️ Tokyo · Free Day</div>
+        <div class="day-sub">Shopping · Last meals · Pack up</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Dec 5</div><div class="weekday">Sat</div></div>
+      <div class="day-dot flight"></div>
+      <div class="day-content">
+        <div class="day-title">✈️ Tokyo NRT → Hong Kong</div>
+        <div class="day-sub">UO857 · 23:55 dep → Dec 6 04:15 arr · Day trip to NRT area</div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label"><div class="date">Dec 6</div><div class="weekday">Sun</div></div>
+      <div class="day-dot flight"></div>
+      <div class="day-content">
+        <div class="day-title">✈️ Hong Kong → Melbourne</div>
+        <div class="day-sub">Arr HKG 04:15 · QF30 19:30 dep · Airport day · Home!</div>
+        <div class="day-notes">~15h in HKG · Rest at airport lounge or hotel day room</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── REMINDERS ── -->
+<div class="section">
+  <div class="section-title">🔔 Calendar Reminders Set</div>
+  <div class="reminders-grid">
+
+    <div class="reminder-card">
+      <div class="reminder-date">⚠ Sep 15, 2026</div>
+      <div class="reminder-title">🗼 Book Tokyo Hotel</div>
+      <div class="reminder-sub">Nov 23 · 1 night<br>Akihabara / Ueno area<br>Budget ¥10,000–15,000<br>Agoda or Booking.com</div>
+    </div>
+
+    <div class="reminder-card">
+      <div class="reminder-date">⚠ Nov 1, 2026</div>
+      <div class="reminder-title">🎿 Buy Lift Pass</div>
+      <div class="reminder-sub">志賀高原 5-day pass<br>Opens for online sale Nov 1<br>shigakogen-ski.or.jp<br>~¥36,000 est.</div>
+    </div>
+
+    <div class="reminder-card">
+      <div class="reminder-date">✓ Done</div>
+      <div class="reminder-title">🏯 Hotels Booked</div>
+      <div class="reminder-sub">小石屋旅館 Nov 25–29<br>湯本旅館 Nov 29–Dec 1<br>Both via じゃらん<br>Confirmed ✓</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── COSTS ── -->
+<div class="section">
+  <div class="section-title">💴 Budget Summary</div>
+  <table class="costs-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Details</th>
+        <th class="amount">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">✈ Qantas MEL ↔ HKG</td>
+        <td class="note">QF29 + QF30 · Ref: EYPCJS · Paid via PayPal</td>
+        <td class="amount">AUD $1,224.42 ✓</td>
+      </tr>
+      <tr>
+        <td class="label">✈ HK Express (Both Legs)</td>
+        <td class="note">UO622 + UO857 · Ref: SFSP4R · Paid via Visa</td>
+        <td class="amount">HKD $3,036 ✓</td>
+      </tr>
+      <tr>
+        <td class="label">🏯 小石屋旅館</td>
+        <td class="note">4 nights · Breakfast · Paid online</td>
+        <td class="amount">¥28,000 ✓</td>
+      </tr>
+      <tr>
+        <td class="label">🛁 湯本旅館</td>
+        <td class="note">2 nights · Breakfast · Pay on site</td>
+        <td class="amount">¥47,000</td>
+      </tr>
+      <tr>
+        <td class="label">🗼 Tokyo Hotel</td>
+        <td class="note">1 night · Nov 23 · TBD</td>
+        <td class="amount estimate">~¥12,000 est.</td>
+      </tr>
+      <tr>
+        <td class="label">🎿 Shiga Kogen Lift Pass</td>
+        <td class="note">5-day pass · Buy Nov 1</td>
+        <td class="amount estimate">~¥36,000 est.</td>
+      </tr>
+      <tr class="total">
+        <td class="label">Total (excl. food, transport)</td>
+        <td class="note">Confirmed items only</td>
+        <td class="amount">AUD ~$3,000+</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <div>Japan Trip 2026 · Richard Fu · Last updated Aug 15, 2026</div>
+  <div>Print: File → Print → Save as PDF</div>
+</div>
+
+</body>
+</html>
